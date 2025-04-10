@@ -3,7 +3,7 @@ const router = express.Router();
 const { getJobs, addJob, updateJob, deleteJob } = require('../excelHelper');
 const { v4: uuidv4 } = require('uuid');
 
-// POST - Add Job
+// Add a job
 router.post('/', (req, res) => {
     try {
         const { company, role, status, date, link } = req.body;
@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
     }
 });
 
-// GET - Fetch all or filtered jobs
+// Get all jobs (or filtered by status/date)
 router.get('/', (req, res) => {
     try {
         let jobs = getJobs();
@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
     }
 });
 
-// PUT - Update job status
+// Update job (edit or change status)
 router.put('/:id', (req, res) => {
     try {
         const updatedJob = updateJob(req.params.id, req.body);
@@ -50,7 +50,7 @@ router.put('/:id', (req, res) => {
     }
 });
 
-// DELETE - Remove a job
+// Delete a job
 router.delete('/:id', (req, res) => {
     try {
         const success = deleteJob(req.params.id);
