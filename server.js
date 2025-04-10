@@ -12,6 +12,10 @@ app.use(express.json());
 
 // Use your Excel-based job routes
 app.use('/jobs', jobRoutes);
+app.get('/', (req, res) => {
+    res.send('🚀 Student Job Tracker Backend is live!');
+  });
+  
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
